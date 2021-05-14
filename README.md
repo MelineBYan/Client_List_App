@@ -4,7 +4,7 @@ Web site https://dreamy-hermann-532b31.netlify.app/
 
 $ git clone https://github.com/MelineBYan/Client_List_App
 
-$ cd-my-project
+$ cd my-project
 
 $ npm install
 

@@ -79,11 +79,9 @@ const clientReduser = (state = initialState, action) => {
 
     case types.EDIT_CLIENT: {
       const clients = [...state.clients];
-      const providers =
-        action.payload.providers.length &&
-        state.providersList.filter((p) =>
-          action.payload.providers.includes(p._id)
-        );
+      const providers = state.providersList.filter((p) =>
+        action.payload.providers.includes(p._id)
+      );
       clients[clients.findIndex((c) => c._id === action.payload._id)] = {
         ...action.payload,
         providers,
@@ -140,8 +138,6 @@ const clientReduser = (state = initialState, action) => {
         loading: false,
         errorMessage: null,
         successMessage: "Provider was updated successfully!",
-
-        // editableTask: null,
       };
     }
 

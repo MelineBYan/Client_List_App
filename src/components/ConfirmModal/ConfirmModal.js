@@ -6,18 +6,16 @@ const Confirm = (props) => {
   const { onHide, removeClient, client } = props;
   return (
     <Modal show={true} onHide={onHide}>
-      <Modal.Header
-        closeButton
-        className="bg-primary text-light"
-      ></Modal.Header>
+      <Modal.Header closeButton className="bg-info text-light"></Modal.Header>
       <Modal.Body>
-        <Modal.Title>Are you sure you want to delete {client} ?</Modal.Title>
+        Are you sure you want to delete
+        <span className="text-info"> {client}</span> ?
       </Modal.Body>
       <Modal.Footer>
         <Button variant="danger" onClick={removeClient}>
           Yes
         </Button>
-        <Button variant="outline-primary" onClick={onHide}>
+        <Button variant="outline-info" onClick={onHide}>
           Cancel
         </Button>
       </Modal.Footer>

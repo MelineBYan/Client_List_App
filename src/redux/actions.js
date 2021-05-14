@@ -187,7 +187,7 @@ export const setClients = () => async (dispatch) => {
     if (data.error) throw data.error;
     dispatch(getClients(data.clients));
   } catch (err) {
-    dispatch(setError(err.message));
+    dispatch(setError(err[0].msg));
   }
 };
 
@@ -204,11 +204,10 @@ export const createClient = (client) => async (dispatch) => {
     dispatch(addClient(data));
     dispatch(resetModalData());
   } catch (err) {
-    dispatch(setError(err.message));
+    dispatch(setError(err[0].msg));
   }
 };
 export const updateClient = (client) => async (dispatch) => {
-  console.log(JSON.stringify(client));
   try {
     dispatch(setLoading());
     const response = await fetch(`${API_HOST}/client/${client._id}`, {
@@ -223,7 +222,7 @@ export const updateClient = (client) => async (dispatch) => {
     dispatch(editClient(data));
     dispatch(resetModalData());
   } catch (error) {
-    dispatch(setError(error.message));
+    dispatch(setError(error[0].msg));
   }
 };
 
@@ -240,7 +239,7 @@ export const removeClient = (id) => async (dispatch) => {
     if (data.error) throw data.error;
     dispatch(deleteClient(id));
   } catch (err) {
-    dispatch(setError(err.message));
+    dispatch(setError(err[0].msg));
   }
 };
 
@@ -253,7 +252,7 @@ export const setProviders = () => async (dispatch) => {
     if (data.error) throw data.error;
     dispatch(getProviders(data.providers));
   } catch (err) {
-    dispatch(setError(err.message));
+    dispatch(setError(err[0].msg));
   }
 };
 export const createProvider = (provider) => async (dispatch) => {
@@ -270,7 +269,7 @@ export const createProvider = (provider) => async (dispatch) => {
     setProviders();
     dispatch(resetProvider());
   } catch (err) {
-    dispatch(setError(err.message));
+    dispatch(setError(err[0].msg));
   }
 };
 
@@ -287,8 +286,7 @@ export const updateProvider = async (provider, dispatch) => {
     dispatch(editProvider(data));
     dispatch(setProviders());
   } catch (error) {
-    console.log("error");
-    dispatch(setError(error.message));
+    dispatch(setError(error[0].msg));
   }
 };
 
@@ -303,7 +301,7 @@ export const removeProvider = async (id, dispatch) => {
     dispatch(deleteProvider(id));
     setProviders();
   } catch (err) {
-    dispatch(removeClient(err.message));
+    dispatch(removeClient(err[0].msg));
   }
 };
 
@@ -316,7 +314,6 @@ export const submitClientModalForm = async (state, onSubmit, dispatch) => {
     delete body.error;
     let providers = [...body.providers];
     providers = providers.map((p) => p._id);
-    console.log({ ...body, providers });
     onSubmit({ ...body, providers });
   } catch (err) {
     console.error(err.message);
@@ -351,6 +348,6 @@ export const sortOrFilrterTasks = async (dispatch, state) => {
       dispatch(toggleClick(false));
     }
   } catch (err) {
-    dispatch(setError(err.message));
+    dispatch(setError(err[0].msg));
   }
 };
