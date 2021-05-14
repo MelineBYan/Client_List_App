@@ -1,0 +1,18 @@
+$heading: rgb(19, 122, 126);
+$background: rgb(165, 170, 169);
+$size: 16px;
+$border: #b8bbbe;
+$color: black;
+
+form {
+  font-size: $size;
+}
+
+.button {
+  background: $background;
+  border: 1px solid $border;
+  color: $color;
+}
+.unchecked {
+  color: white;
+}
