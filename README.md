@@ -3,11 +3,15 @@
 # Installation and usage
 
 $ git clone https://github.com/MelineBYan/Client_List_App
+
+$ cd-my-project
+
 $ npm install
 
 ## Runing the project
 
 $ cd my-project
+
 $ npm start
 
 Runs the app in the development mode.\
