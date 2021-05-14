@@ -15,11 +15,12 @@ const Provider = ({
   toggleChecked,
   updateProvider,
   setEditableProvider,
-  currentlyEditing,
   changeProvider,
   editableProvider,
   removeProvider,
 }) => {
+  const currentlyEditing = editableProvider?._id === provider._id;
+
   useEffect(() => {
     currentlyEditing && inputRef.current.focus();
   }, [setEditableProvider, currentlyEditing]);
@@ -27,7 +28,7 @@ const Provider = ({
   let checked = false;
   if (providers.length) {
     providers.forEach((p) => {
-      if (p.name === provider.name) {
+      if (p._id === provider._id) {
         checked = true;
         return;
       }

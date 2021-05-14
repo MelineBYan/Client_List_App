@@ -41,11 +41,12 @@ const clientModalReducer = (state = initialState, action) => {
       const { name, value } = action.payload;
 
       let error =
-        (name !== "provider" && isRequired(value.trim(), name)) ||
         minLength1(value.trim()) ||
+        isRequired(value.trim(), name) ||
         ((name === "name" || name === "email") && maxLength50(value.trim())) ||
         (name === "email" && validateEmail(value.trim())) ||
         (name === "phone" && isArmPhoneNumber(value.trim()));
+
       return {
         ...state,
         [name]: value,
@@ -76,7 +77,9 @@ const clientModalReducer = (state = initialState, action) => {
       let value = action.payload;
       const editableProvider = { ...state.editableProvider };
       editableProvider.name = value;
-      let error = minLength1(value.trim()) || maxLength50(value.trim());
+      let error = value
+        ? minLength1(value.trim()) || maxLength50(value.trim())
+        : null;
       return {
         ...state,
         editableProvider,

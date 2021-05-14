@@ -113,7 +113,6 @@ const ClientModal = (props) => {
       updateProvider={updateProvider}
       setEditableProvider={setEditableProvider}
       changeProvider={changeProvider}
-      currentlyEditing={editableProvider?._id === p._id}
       editableProvider={editableProvider}
       removeProvider={removeProvider}
     />
