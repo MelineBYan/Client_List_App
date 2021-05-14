@@ -1,4 +1,4 @@
-Web site https://dreamy-hermann-532b31.netlify.app/
+Web site https://melinebyan.github.io/Client_List_App/
 
 # Installation and usage
 
