@@ -204,7 +204,7 @@ export const createClient = (client) => async (dispatch) => {
     dispatch(addClient(data));
     dispatch(resetModalData());
   } catch (err) {
-    dispatch(setError(err[0].msg));
+    dispatch(setError(err.message));
   }
 };
 export const updateClient = (client) => async (dispatch) => {
