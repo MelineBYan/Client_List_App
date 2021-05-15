@@ -58,11 +58,9 @@ const clientReduser = (state = initialState, action) => {
     }
 
     case types.ADD_CLIENT: {
-      const providers =
-        action.payload.providers.length &&
-        state.providersList.filter((p) =>
-          action.payload.providers.includes(p._id)
-        );
+      const providers = state.providersList.filter((p) =>
+        action.payload.providers.includes(p._id)
+      );
 
       const client = { ...action.payload, providers };
       const clients = [...state.clients, client];
@@ -129,25 +127,58 @@ const clientReduser = (state = initialState, action) => {
 
     case types.EDIT_PROVIDER: {
       const providersList = [...state.providersList];
-      providersList[
-        providersList.findIndex((p) => p._id === action.payload._id)
-      ] = action.payload;
+      const { _id, name } = action.payload;
+      let isDuplicate = false;
+      providersList.forEach((p) => {
+        if (p.name === name) {
+          isDuplicate = true;
+          return;
+        }
+      });
+      if (!isDuplicate) {
+        providersList[providersList.findIndex((p) => p._id === _id)] =
+          action.payload;
+      }
       return {
         ...state,
         providersList,
         loading: false,
-        errorMessage: null,
-        successMessage: "Provider was updated successfully!",
+        errorMessage: !isDuplicate
+          ? null
+          : "Provider's name is already exists!",
+        successMessage: !isDuplicate
+          ? "Provider was updated successfully!"
+          : null,
       };
     }
 
     case types.ADD_PROVIDER: {
-      const providersList = [...state.providersList, { ...action.payload }];
+      let providersList = [...state.providersList];
+      const { _id, name } = action.payload;
+      let isDuplicate = false;
+      providersList.forEach((p) => {
+        if (p.name === name) {
+          isDuplicate = true;
+          return;
+        }
+      });
+      if (!isDuplicate) {
+        providersList[providersList.findIndex((p) => p._id === _id)] =
+          action.payload;
+      }
+      if (!isDuplicate) {
+        providersList = [...state.providersList, { ...action.payload }];
+      }
+
       return {
         ...state,
         providersList,
-        errorMessage: null,
-        successMessage: "Provider was added successfully!",
+        errorMessage: !isDuplicate
+          ? null
+          : "Provider's name is already exists!",
+        successMessage: !isDuplicate
+          ? "Provider was updated successfully!"
+          : null,
         loading: false,
       };
     }

@@ -41,8 +41,8 @@ const clientModalReducer = (state = initialState, action) => {
       const { name, value } = action.payload;
 
       let error =
-        minLength1(value.trim()) ||
-        isRequired(value.trim(), name) ||
+        (name !== "provider" && minLength1(value.trim())) ||
+        (name !== "provider" && isRequired(value.trim(), name)) ||
         ((name === "name" || name === "email") && maxLength50(value.trim())) ||
         (name === "email" && validateEmail(value.trim())) ||
         (name === "phone" && isArmPhoneNumber(value.trim()));
