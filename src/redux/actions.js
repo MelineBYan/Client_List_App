@@ -187,7 +187,7 @@ export const setClients = () => async (dispatch) => {
     if (data.error) throw data.error;
     dispatch(getClients(data.clients));
   } catch (err) {
-    dispatch(setError(err[0] ? err[0].msg : err.message));
+    dispatch(setError(err[0].msg));
   }
 };
 
@@ -204,7 +204,7 @@ export const createClient = (client) => async (dispatch) => {
     dispatch(addClient(data));
     dispatch(resetModalData());
   } catch (err) {
-    dispatch(setError(err.message));
+    dispatch(setError(err[0].msg));
   }
 };
 export const updateClient = (client) => async (dispatch) => {
@@ -252,7 +252,7 @@ export const setProviders = () => async (dispatch) => {
     if (data.error) throw data.error;
     dispatch(getProviders(data.providers));
   } catch (err) {
-    dispatch(setError(err[0] ? err[0].msg : err.message));
+    dispatch(setError(err[0].msg));
   }
 };
 export const createProvider = (provider) => async (dispatch) => {
