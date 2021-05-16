@@ -1,6 +1,6 @@
 import * as types from "../redux/types";
 
-export const API_HOST = process.env.REACT_APP_API_URL;
+import { API_HOST } from "../utils/config";
 
 //actionCreators
 export const setLoading = () => {
@@ -187,7 +187,7 @@ export const setClients = () => async (dispatch) => {
     if (data.error) throw data.error;
     dispatch(getClients(data.clients));
   } catch (err) {
-    dispatch(setError(err[0].msg));
+    dispatch(setError(err[0] ? err[0].msg : err.message));
   }
 };
 
@@ -252,7 +252,7 @@ export const setProviders = () => async (dispatch) => {
     if (data.error) throw data.error;
     dispatch(getProviders(data.providers));
   } catch (err) {
-    dispatch(setError(err[0].msg));
+    dispatch(setError(err[0] ? err[0].msg : err.message));
   }
 };
 export const createProvider = (provider) => async (dispatch) => {
