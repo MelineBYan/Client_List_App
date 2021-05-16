@@ -1,4 +1,4 @@
-Web site https://melinebyan.github.io/Client_List_App/
+Website https://melinebyan.github.io/Client_List_App/
 
 # Installation and usage
 
