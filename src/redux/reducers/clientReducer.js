@@ -58,13 +58,7 @@ const clientReduser = (state = initialState, action) => {
     }
 
     case types.ADD_CLIENT: {
-      const providers = state.providersList.filter((p) =>
-        action.payload.providers.includes(p._id)
-      );
-
-      const client = { ...action.payload, providers };
-      const clients = [...state.clients, client];
-
+      const clients = [...state.clients, action.payload];
       return {
         ...state,
         clients,
@@ -77,12 +71,9 @@ const clientReduser = (state = initialState, action) => {
 
     case types.EDIT_CLIENT: {
       const clients = [...state.clients];
-      const providers = state.providersList.filter((p) =>
-        action.payload.providers.includes(p._id)
-      );
+
       clients[clients.findIndex((c) => c._id === action.payload._id)] = {
         ...action.payload,
-        providers,
       };
       return {
         ...state,
@@ -155,6 +146,7 @@ const clientReduser = (state = initialState, action) => {
     case types.ADD_PROVIDER: {
       let providersList = [...state.providersList];
       const { _id, name } = action.payload;
+
       let isDuplicate = false;
       providersList.forEach((p) => {
         if (p.name === name) {

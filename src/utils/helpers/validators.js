@@ -12,5 +12,5 @@ export const validateEmail = (email) => {
 };
 export const isArmPhoneNumber = (Phone_N) => {
   const numberRegExp = /^[+-]?(([0-9])+([.][0-9]*)?|[.][0-9]+)$/;
-  return numberRegExp.test(Phone_N) ? undefined : "Invalid number";
+  return numberRegExp.test(Phone_N) ? undefined : "Not a  number";
 };
