@@ -47,7 +47,6 @@ const ClientModal = (props) => {
     onSubmit,
     editableClient,
     providersList,
-    isOpenConfirmModal,
     errorMessage,
     //dispatch
     changeModalForm,
@@ -128,57 +127,55 @@ const ClientModal = (props) => {
 
   return (
     <>
-      {!isOpenConfirmModal ? (
-        <Modal show={true} onHide={onHide}>
-          <Modal.Header closeButton className="text-info">
-            <Modal.Title>
-              {!editableClient ? "New Client" : "Edit Client"}
-            </Modal.Title>
-          </Modal.Header>
-          <div className="text-danger mx-auto">{errorMessage}</div>
-          <Modal.Body>
-            <Form
-              onSubmit={(e) => e.preventDefault()}
-              className="border-secondary"
-            >
-              {inputsJSX}
+      <Modal show={true} onHide={onHide}>
+        <Modal.Header closeButton className="text-info">
+          <Modal.Title>
+            {!editableClient ? "New Client" : "Edit Client"}
+          </Modal.Title>
+        </Modal.Header>
+        <div className="text-danger mx-auto">{errorMessage}</div>
+        <Modal.Body>
+          <Form
+            onSubmit={(e) => e.preventDefault()}
+            className="border-secondary"
+          >
+            {inputsJSX}
 
-              <Col style={{ border: "1px solid #dee2e6" }}>{providersJSX}</Col>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            {editableClient && (
-              <Button
-                variant="danger"
-                className="mr-auto"
-                onClick={() => {
-                  setIsOpenConfirmModal(true);
-                }}
-              >
-                Delete Client
-              </Button>
-            )}
+            <Col style={{ border: "1px solid #dee2e6" }}>{providersJSX}</Col>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          {editableClient && (
             <Button
-              variant="light"
-              onClick={onHide}
-              className="border-secondary rounded rounded"
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="light"
-              className="border-secondary rounded"
-              disabled={errorMessage || !(name.trim() && email.trim() && phone)}
+              variant="danger"
+              className="mr-auto"
               onClick={() => {
-                submitForm(state, onSubmit);
-                onHide();
+                setIsOpenConfirmModal(true);
               }}
             >
-              {!editableClient ? "Add Client" : "Save Client"}
+              Delete Client
             </Button>
-          </Modal.Footer>
-        </Modal>
-      ) : null}
+          )}
+          <Button
+            variant="light"
+            onClick={onHide}
+            className="border-secondary rounded rounded"
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="light"
+            className="border-secondary rounded"
+            disabled={errorMessage || !(name.trim() && email.trim() && phone)}
+            onClick={() => {
+              submitForm(state, onSubmit);
+              onHide();
+            }}
+          >
+            {!editableClient ? "Add Client" : "Save Client"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

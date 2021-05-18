@@ -88,7 +88,6 @@ const ClientList = (props) => {
           setIsOpenConfirmModal={setIsOpenConfirmModal}
           onSubmit={editableClient ? updateClient : createClient}
           editableClient={editableClient}
-          isOpenConfirmModal={isOpenConfirmModal}
           createProvider={createProvider}
         />
       )}

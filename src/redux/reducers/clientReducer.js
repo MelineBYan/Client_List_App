@@ -119,27 +119,16 @@ const clientReduser = (state = initialState, action) => {
     case types.EDIT_PROVIDER: {
       const providersList = [...state.providersList];
       const { _id, name } = action.payload;
-      let isDuplicate = false;
-      providersList.forEach((p) => {
-        if (p.name === name) {
-          isDuplicate = true;
-          return;
-        }
-      });
-      if (!isDuplicate) {
-        providersList[providersList.findIndex((p) => p._id === _id)] =
-          action.payload;
-      }
+
+      providersList[providersList.findIndex((p) => p._id === _id)] =
+        action.payload;
+
       return {
         ...state,
         providersList,
         loading: false,
-        errorMessage: !isDuplicate
-          ? null
-          : "Provider's name is already exists!",
-        successMessage: !isDuplicate
-          ? "Provider was updated successfully!"
-          : null,
+        errorMessage: null,
+        successMessage: "Provider was updated successfully!",
       };
     }
 
@@ -147,30 +136,13 @@ const clientReduser = (state = initialState, action) => {
       let providersList = [...state.providersList];
       const { _id, name } = action.payload;
 
-      let isDuplicate = false;
-      providersList.forEach((p) => {
-        if (p.name === name) {
-          isDuplicate = true;
-          return;
-        }
-      });
-      if (!isDuplicate) {
-        providersList[providersList.findIndex((p) => p._id === _id)] =
-          action.payload;
-      }
-      if (!isDuplicate) {
-        providersList = [...state.providersList, { ...action.payload }];
-      }
+      providersList = [...state.providersList, { ...action.payload }];
 
       return {
         ...state,
         providersList,
-        errorMessage: !isDuplicate
-          ? null
-          : "Provider's name is already exists!",
-        successMessage: !isDuplicate
-          ? "Provider was updated successfully!"
-          : null,
+        errorMessage: null,
+        successMessage: "Provider was updated successfully!",
         loading: false,
       };
     }
