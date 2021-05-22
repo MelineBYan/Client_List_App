@@ -118,7 +118,7 @@ const clientReduser = (state = initialState, action) => {
 
     case types.EDIT_PROVIDER: {
       const providersList = [...state.providersList];
-      const { _id, name } = action.payload;
+      const { _id } = action.payload;
 
       providersList[providersList.findIndex((p) => p._id === _id)] =
         action.payload;
@@ -134,7 +134,6 @@ const clientReduser = (state = initialState, action) => {
 
     case types.ADD_PROVIDER: {
       let providersList = [...state.providersList];
-      const { _id, name } = action.payload;
 
       providersList = [...state.providersList, { ...action.payload }];
 
@@ -142,7 +141,7 @@ const clientReduser = (state = initialState, action) => {
         ...state,
         providersList,
         errorMessage: null,
-        successMessage: "Provider was updated successfully!",
+        successMessage: "Provider was created successfully!",
         loading: false,
       };
     }

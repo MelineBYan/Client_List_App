@@ -312,7 +312,6 @@ export const submitClientModalForm = async (state, onSubmit, dispatch) => {
     delete body.provider;
     delete body.editableProvider;
     delete body.error;
-    console.log("body", body);
     onSubmit(body);
   } catch (err) {
     console.error(err.message);
