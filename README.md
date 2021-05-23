@@ -2,7 +2,7 @@ Website https://melinebyan.github.io/Client_List_App/
 
 # Installation and usage
 
-$ git clone https://github.com/MelineBYan/Client_List_App
+$ git clone https://github.com/MelineBYan/Client_List_App.git
 
 $ cd my-project
 
