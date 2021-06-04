@@ -5,7 +5,9 @@ import {
   TOGGLE_CHECKED,
   SET_EDITABLE_PROVIDER,
   CHANGE_PROVIDER,
+  CREATE_PROVIDER,
   RESET_PROVIDER,
+  DELETE_PROVIDER,
 } from "../types";
 import {
   maxLength,
@@ -67,6 +69,16 @@ const clientModalReducer = (state = initialState, action) => {
         providers,
       };
     }
+
+    case DELETE_PROVIDER: {
+      let providers = [...state.providers];
+      providers = providers.filter((p) => p._id !== action.payload);
+      return {
+        ...state,
+        providers,
+      };
+    }
+
     case SET_EDITABLE_PROVIDER: {
       return {
         ...state,

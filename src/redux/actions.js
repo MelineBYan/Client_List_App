@@ -111,6 +111,14 @@ export const setEditableProvider = (prov) => {
   };
 };
 
+// modal provider
+
+export const deleteProv = (id) => {
+  return {
+    type: types.DELETE_PROVIDER,
+    payload: id,
+  };
+};
 export const resetProvider = () => {
   return {
     type: types.RESET_PROVIDER,
@@ -229,6 +237,7 @@ export const updateClient = (client) => async (dispatch) => {
 export const setEditable = (value) => async (dispatch) => {
   dispatch(setEditableClient(value));
 };
+
 export const removeClient = (id) => async (dispatch) => {
   try {
     dispatch(setLoading());
@@ -266,6 +275,7 @@ export const createProvider = (provider) => async (dispatch) => {
     const data = await response.json();
     if (data.error) throw data.error;
     dispatch(addProvider(data));
+    // dispatch(addProv(data));
     setProviders();
     dispatch(resetProvider());
   } catch (err) {
@@ -284,7 +294,8 @@ export const updateProvider = async (provider, dispatch) => {
     const data = await response.json();
     if (data.error) throw data.error;
     dispatch(editProvider(data));
-    dispatch(setProviders());
+    setProviders();
+    setClients();
   } catch (error) {
     dispatch(setError(error[0].msg));
   }
@@ -299,9 +310,10 @@ export const removeProvider = async (id, dispatch) => {
     const data = await res.json();
     if (data.error) throw data.error;
     dispatch(deleteProvider(id));
+    dispatch(deleteProv(id));
     setProviders();
   } catch (err) {
-    dispatch(removeClient(err[0].msg));
+    dispatch(setError(err[0].msg));
   }
 };
 

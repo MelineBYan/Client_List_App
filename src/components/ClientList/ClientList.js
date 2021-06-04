@@ -16,7 +16,7 @@ import Spinner from "../Spinner/Spinner";
 import ClientModal from "../ClientModal/ClientModal";
 import Client from "../Client/Client";
 import Confirm from "../ConfirmModal/ConfirmModal";
-import "./client.scss";
+import "./clientList.scss";
 
 import Search from "../Search/Search";
 
